@@ -2,7 +2,6 @@ package vuegraphique;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -29,7 +28,11 @@ public class FramePrincipal extends JFrame {
 	JPanel panContents = new JPanel();
 	PanAcceuil panAcceuil= new PanAcceuil();
 	PanConnexion panConnexion = new PanConnexion(this, controlSIdentifier);
-
+	PanCamera panCamera = new PanCamera();
+	PanHistory panHistory = new PanHistory();
+	PanMyHome panMyHome = new PanMyHome();
+	PanSecure panSecure = new PanSecure();
+	
 	private CardLayout cartes = new CardLayout();
 	JPanel panBas = new JPanel();
 	JPanel panTop  = new JPanel();
@@ -53,22 +56,32 @@ public class FramePrincipal extends JFrame {
 		this.setSize(917, 623); 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
-		
+        this.setResizable(false);
+
 		this.panAcceuil.initialisation();
+		this.panCamera.initialisation();
+		this.panHistory.initialisation();
+		this.panMyHome.initialisation();
+		this.panSecure.initialisation();
 		this.panConnexion.initConnexion();
 		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
 		this.panContents.add(this.panAcceuil,"ACCEUIL");
 		this.panContents.add(this.panConnexion,"CONNEXION");
+		this.panContents.add(this.panCamera,"CAMERA");
+		this.panContents.add(this.panHistory,"HISTORY");
+		this.panContents.add(this.panMyHome,"MYHOME");
+		this.panContents.add(this.panSecure,"SECURE");
 
-		this.panBas.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
-		//this.panBas.add(boutonAide,BorderLayout.EAST);
-		//this.panBas.add(boutonAcceuil,BorderLayout.WEST);
+		this.panBas.setLayout(new BorderLayout()); 
+		this.panTop.setLayout(new BorderLayout());
 		this.initPanBas();
+		this.initPanTop();
+		this.add(panTop,BorderLayout.NORTH);
 		this.add(panBas,BorderLayout.SOUTH);
 		this.showPanConnexion();
 		
 		
-		this.panBas.setVisible(false);
+		this.panBas.setVisible(true); //A CHANGER
 		this.panTop.setVisible(false);
 		this.getContentPane().add(panContents);
 		this.showPanConnexion();
@@ -89,20 +102,25 @@ public class FramePrincipal extends JFrame {
 	
 	
 	public void showPanMyHome() {
-		this.cartes.show(panContents, "ACCEUIL");
+		this.cartes.show(panContents, "MYHOME");
 		this.repaint();
 	}
 	
 	public void showPanSecure() {
-		this.cartes.show(panContents, "ACCEUIL");
+		this.cartes.show(panContents, "SECURE");
 		this.repaint();
 	}
 	
 	public void showPanCamera() {
-		this.cartes.show(panContents, "ACCEUIL");
+		this.cartes.show(panContents, "CAMERA");
 		this.repaint();
 	}
 
+	public void showPanHistory() {
+		this.cartes.show(panContents, "HISTORY");
+		this.repaint();
+	}
+	
 	public JPanel getPanContents() {
 		return panContents;
 	}
@@ -112,10 +130,15 @@ public class FramePrincipal extends JFrame {
 	}
 	
 	
+	public void initPanTop() {
+		//A REMPLIR
+	}
+	
+	
+	
+	
 	public void initPanBas() {
-		
-		
-		
+
 		//MY HOME
 		BufferedImage myhome=null;
 		try {
@@ -283,7 +306,7 @@ public class FramePrincipal extends JFrame {
 					Jhistory.setIcon(history11);
 					Jsecure.setIcon(secure11);
 					panActuel=1;
-					showPanSecure();
+					showPanAcceuil();
 				}	
 			}
             @Override
@@ -351,7 +374,7 @@ public class FramePrincipal extends JFrame {
 					Jhistory.setIcon(history22);
 					Jsecure.setIcon(secure11);
 					panActuel=5;
-					showPanCamera();
+					showPanHistory();
 				}	
 			}
             @Override
