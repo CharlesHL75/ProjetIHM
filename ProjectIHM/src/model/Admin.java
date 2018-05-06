@@ -2,8 +2,8 @@ package model;
 
 public class Admin {
 	
-	private String login = new String("UPSSITECH");
-	private String mdp = new String("password");
+	private String login = new String("a");
+	private String mdp = new String("a");
 	private boolean connecte = false;
 	
 	 private Admin() {

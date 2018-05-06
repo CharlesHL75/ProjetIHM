@@ -2,6 +2,8 @@ package vuegraphique;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -22,12 +24,18 @@ public class PanSecure extends JPanel  {
 	JLabel JTexteEtat  = new JLabel();
 	JLabel JTexteEtat2  = new JLabel();
 	JLabel JTexteAlarme  = new JLabel();
+	JLabel JTexteVide  = new JLabel();
+	
+	
 	Box boxgauche  = Box.createVerticalBox();
 	Box boxdroite  = Box.createVerticalBox();
 	Box boxTextEtat  = Box.createHorizontalBox();
 	Box boxTextEtat2  = Box.createHorizontalBox();
 	Box boxTextAlarme  = Box.createHorizontalBox();
-
+	
+	private boolean enabled;
+	private boolean ouvert;
+	
 	public void initialisation() {
 	        	this.setBackground(Color.WHITE);
 		
@@ -44,7 +52,7 @@ public class PanSecure extends JPanel  {
 				//CADENAS FERME
 				BufferedImage cadenas_ferme=null;
 				try {
-					cadenas_ferme = ImageIO.read(new File("RESSOURCE/cadenasferme.png"));
+					cadenas_ferme = ImageIO.read(new File("RESSOURCE/cadenasFerme.png"));
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}		
@@ -60,11 +68,25 @@ public class PanSecure extends JPanel  {
 				}		
 				ImageIcon alarm1=new ImageIcon(alarm);
 				
+				//ALARM DISABLED
+				BufferedImage alarmDisabled=null;
+				try {
+					alarmDisabled = ImageIO.read(new File("RESSOURCE/alarmeDisabled.png"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}		
+				ImageIcon alarmDisabled1=new ImageIcon(alarmDisabled);
+				
 		
 				//CADENAS
+				
 				Jcadenas.setIcon(cadenas_ouvert2);
-				JTexteEtat.setText("Your house isnt armed");
+				JTexteEtat.setText("Your house is not armed");
+				JTexteEtat.setFont(new Font("Tahoma", Font.BOLD, 32));
 				JTexteEtat2.setText(" ");
+				JTexteEtat2.setFont(new Font("Tahoma", Font.BOLD, 32));
+				
+				ouvert=true;
 				
 				Jcadenas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//� ajouter et mettre pour chaque label
 				Jcadenas.addMouseListener(new MouseListener() {
@@ -73,9 +95,18 @@ public class PanSecure extends JPanel  {
 					}
 					@Override
 					public void mousePressed(MouseEvent e) {
+						if(ouvert==true) {
 						Jcadenas.setIcon(cadenas_ferme2);
 						JTexteEtat.setText("EVRYTHING LOOKS GOOD");
-						JTexteEtat2.setText("Your house is armed");
+						JTexteEtat2.setText("Your home is armed");
+						ouvert=false;
+						}
+						else {
+			     		Jcadenas.setIcon(cadenas_ouvert2);
+						JTexteEtat.setText("Your home is not armed");
+						JTexteEtat2.setText(" ");
+						ouvert=true;
+						}
 					}
 		            @Override
 		            public void mouseEntered(MouseEvent e) {
@@ -92,8 +123,11 @@ public class PanSecure extends JPanel  {
 				});
 				
 				//Alarm
-				Jalarme.setIcon(alarm1);
+			    enabled=false;
+			    Jalarme.setIcon(alarmDisabled1);
+				JTexteVide.setText("         ");
 				JTexteAlarme.setText("Alarme Disabled");
+				JTexteAlarme.setFont(new Font("Tahoma", Font.BOLD, 27));
 				
 				Jalarme.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//� ajouter et mettre pour chaque label
 				Jalarme.addMouseListener(new MouseListener() {
@@ -102,7 +136,17 @@ public class PanSecure extends JPanel  {
 					}
 					@Override
 					public void mousePressed(MouseEvent e) {
-						JTexteAlarme.setText("Alarme Enabled");
+						if(enabled==false) {
+							Jalarme.setIcon(alarm1);
+							JTexteAlarme.setText("Alarme Enabled");
+							enabled=true;
+						}
+						else {
+							JTexteAlarme.setText("Alarme Disabled");
+							Jalarme.setIcon(alarmDisabled1);
+							enabled=false;
+						}
+						
 					}
 		            @Override
 		            public void mouseEntered(MouseEvent e) {
@@ -117,9 +161,13 @@ public class PanSecure extends JPanel  {
 
 					}
 				});
+				boxTextEtat.add(Box.createRigidArea(new Dimension(0,180)));
 				boxTextEtat.add(JTexteEtat);
 				boxTextEtat2.add(JTexteEtat2);
+				boxTextEtat2.add(Box.createRigidArea(new Dimension(0,130)));
 				boxTextAlarme.add(Jalarme);
+				boxTextAlarme.add(JTexteVide);
+				boxTextAlarme.add(JTexteAlarme);
 				boxgauche.add(boxTextEtat);
 				boxgauche.add(boxTextEtat2);
 				boxgauche.add(boxTextAlarme);
