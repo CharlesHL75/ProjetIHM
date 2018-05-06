@@ -10,6 +10,7 @@ public class PanCamera extends JPanel  {
 	public void initialisation() {
 		// TODO Auto-generated method stub
 		this.setBackground(Color.WHITE);
+		
 
 	}
 

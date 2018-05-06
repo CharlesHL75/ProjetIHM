@@ -4,11 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
@@ -168,11 +171,15 @@ public class FramePrincipal extends JFrame {
 		
 		
 		Jsettings.setIcon(settings1);
-		Jdateheure.setIcon(dateheure1);
+		//Jdateheure.setIcon(dateheure1);
+		String timeStamp = new SimpleDateFormat("dd/MM/yyyy  HH:mm  30°").format(Calendar.getInstance().getTime());
+		Jdateheure.setText(timeStamp);
+		Jdateheure.setFont(new Font("Tahoma", Font.BOLD, 32));
+		Jdateheure.setForeground(Color.WHITE);
 		Json.setIcon(son1);
 		
-		JTexteVide1.setText("                              ");
-		JTexteVide2.setText("                              ");
+		JTexteVide1.setText("                                         ");
+		JTexteVide2.setText("                                         ");
 
 		
 		
