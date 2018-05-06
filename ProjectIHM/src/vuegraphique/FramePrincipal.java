@@ -2,6 +2,7 @@ package vuegraphique;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -31,12 +32,13 @@ public class FramePrincipal extends JFrame {
 	PanCamera panCamera = new PanCamera();
 	PanHistory panHistory = new PanHistory();
 	PanMyHome panMyHome = new PanMyHome();
-	PanSecure panSecure = new PanSecure();
+	PanSecure panSecure = new PanSecure(panMyHome);
 	
 	private CardLayout cartes = new CardLayout();
 	JPanel panBas = new JPanel();
 	JPanel panTop  = new JPanel();
 	Box boxPanBas  = Box.createHorizontalBox();
+	Box boxPanTop  = Box.createHorizontalBox();
 	int panActuel = 0; 
 	//0 connexion
 	//1 acceuil
@@ -50,9 +52,14 @@ public class FramePrincipal extends JFrame {
 	JLabel Jacceuil = new JLabel();
 	JLabel Jcamera = new JLabel();
 	JLabel Jhistory = new JLabel();
+	JLabel Jsettings = new JLabel();
+	JLabel Jdateheure = new JLabel();
+	JLabel Json = new JLabel();
+	JLabel JTexteVide1  = new JLabel();
+	JLabel JTexteVide2  = new JLabel();
 	
 	public FramePrincipal() {
-		this.setTitle("IHM");  //Définit un titre
+		this.setTitle("IHM");  //Dï¿½finit un titre
 		this.setSize(917, 623); 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
@@ -64,7 +71,7 @@ public class FramePrincipal extends JFrame {
 		this.panMyHome.initialisation();
 		this.panSecure.initialisation();
 		this.panConnexion.initConnexion();
-		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
+		this.panContents.setLayout(cartes); //ajoute ï¿½ panContents le Layout de cartes
 		this.panContents.add(this.panAcceuil,"ACCEUIL");
 		this.panContents.add(this.panConnexion,"CONNEXION");
 		this.panContents.add(this.panCamera,"CAMERA");
@@ -81,8 +88,8 @@ public class FramePrincipal extends JFrame {
 		this.showPanConnexion();
 		
 		
-		this.panBas.setVisible(false); 
-		this.panTop.setVisible(false);
+		this.panBas.setVisible(true); 
+		this.panTop.setVisible(true);
 		this.getContentPane().add(panContents);
 		this.showPanConnexion();
 		this.setVisible(true);
@@ -131,8 +138,54 @@ public class FramePrincipal extends JFrame {
 	
 	
 	public void initPanTop() {
-		//A REMPLIR
+		
+		panTop.setBackground(new Color(34,119,239));
+		
+		BufferedImage settings=null;
+		try {
+			settings = ImageIO.read(new File("RESSOURCE/settings.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon settings1=new ImageIcon(settings);
+	
+		BufferedImage dateheure=null;
+		try {
+			dateheure = ImageIO.read(new File("RESSOURCE/date-heure.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon dateheure1=new ImageIcon(dateheure);
+	
+	
+		BufferedImage son=null;
+		try {
+			son = ImageIO.read(new File("RESSOURCE/son.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon son1=new ImageIcon(son);
+		
+		
+		Jsettings.setIcon(settings1);
+		Jdateheure.setIcon(dateheure1);
+		Json.setIcon(son1);
+		
+		JTexteVide1.setText("                              ");
+		JTexteVide2.setText("                              ");
+
+		
+		
+		
+		boxPanTop.add(Jsettings);
+		boxPanTop.add(JTexteVide1);
+		boxPanTop.add(Jdateheure);
+		boxPanTop.add(JTexteVide2);
+		boxPanTop.add(Json);
+		panTop.add(boxPanTop);
 	}
+	   
+	   
 	
 	
 	
@@ -224,7 +277,7 @@ public class FramePrincipal extends JFrame {
 		
 		//MY HOME
 		Jmyhome.setIcon(myhome11);
-		Jmyhome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jmyhome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jmyhome.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -258,7 +311,7 @@ public class FramePrincipal extends JFrame {
 		
 		//SECURE
 		Jsecure.setIcon(secure11);
-		Jsecure.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jsecure.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jsecure.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -292,7 +345,7 @@ public class FramePrincipal extends JFrame {
 		
 		//ACCEUIL
 		Jacceuil.setIcon(acceuil22);
-		Jacceuil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jacceuil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jacceuil.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -326,7 +379,7 @@ public class FramePrincipal extends JFrame {
 		
 		//CAMERA
 		Jcamera.setIcon(camera11);
-		Jcamera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jcamera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jcamera.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -360,7 +413,7 @@ public class FramePrincipal extends JFrame {
 		
 		//HISTORY
 		Jhistory.setIcon(history11);
-		Jhistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jhistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jhistory.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {

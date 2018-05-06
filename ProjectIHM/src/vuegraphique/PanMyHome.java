@@ -82,12 +82,12 @@ public class PanMyHome extends JPanel  {
 		fenetre4.setIcon(fentrerougeicn);
 		porte.setIcon(porteverticn);
 		maison.setIcon(maisonicn);
-		maison.setBounds(300,80,539,391);
-		fenetre1.setBounds(400,205,101,49);
-		fenetre2.setBounds(640,205,101,49);
-		fenetre3.setBounds(640,300,101,49);
-		fenetre4.setBounds(400,300,101,49);
-		porte.setBounds(525,396,98,72);
+		maison.setBounds(300,30,539,391);
+		fenetre1.setBounds(400,155,101,49);
+		fenetre2.setBounds(640,155,101,49);
+		fenetre3.setBounds(640,250,101,49);
+		fenetre4.setBounds(400,250,101,49);
+		porte.setBounds(525,346,98,72);
 		initListenerPorteFenetre();
 		this.add(fenetre1);
 		this.add(fenetre2);
