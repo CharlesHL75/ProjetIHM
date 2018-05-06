@@ -90,8 +90,8 @@ public class FramePrincipal extends JFrame {
 		this.showPanConnexion();
 		
 		
-		this.panBas.setVisible(true); 
-		this.panTop.setVisible(true);
+		this.panBas.setVisible(false); 
+		this.panTop.setVisible(false);
 		this.getContentPane().add(panContents);
 		this.showPanConnexion();
 		this.setVisible(true);
