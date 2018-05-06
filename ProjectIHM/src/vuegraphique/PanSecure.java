@@ -49,7 +49,7 @@ public class PanSecure extends JPanel  {
 				ImageIcon cadenas_ouvert2=new ImageIcon(cadenas_ouvert);
 				
 				
-				//CADENAS FERME
+				//CADENAS FERMEE
 				BufferedImage cadenas_ferme=null;
 				try {
 					cadenas_ferme = ImageIO.read(new File("RESSOURCE/cadenasFerme.png"));
