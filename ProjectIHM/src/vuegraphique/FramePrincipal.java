@@ -25,14 +25,18 @@ public class FramePrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	ControlSIdentifier controlSIdentifier = new ControlSIdentifier();
+	PanSecure panSecure=new PanSecure();
 
 	JPanel panContents = new JPanel();
 	PanAcceuil panAcceuil= new PanAcceuil();
 	PanConnexion panConnexion = new PanConnexion(this, controlSIdentifier);
 
 	private CardLayout cartes = new CardLayout();
+	
+	
 	JPanel panBas = new JPanel();
 	JPanel panTop  = new JPanel();
+	JPanel panCenter  = new JPanel();
 	Box boxPanBas  = Box.createHorizontalBox();
 	int panActuel = 0; 
 	//0 connexion
@@ -49,22 +53,27 @@ public class FramePrincipal extends JFrame {
 	JLabel Jhistory = new JLabel();
 	
 	public FramePrincipal() {
-		this.setTitle("IHM");  //Définit un titre
+		this.setTitle("IHM");  //Dï¿½finit un titre
 		this.setSize(917, 623); 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
 		
 		this.panAcceuil.initialisation();
 		this.panConnexion.initConnexion();
-		this.panContents.setLayout(cartes); //ajoute à panContents le Layout de cartes
+		this.panContents.setLayout(cartes); //ajoute ï¿½ panContents le Layout de cartes
+
 		this.panContents.add(this.panAcceuil,"ACCEUIL");
 		this.panContents.add(this.panConnexion,"CONNEXION");
+		this.panContents.add(this.panSecure,"SECURE");
 
-		this.panBas.setLayout(new BorderLayout()); //Configuration du panel haut de la frame
+		this.panBas.setLayout(new BorderLayout());//Configuration du panel haut de la frame
+		
 		//this.panBas.add(boutonAide,BorderLayout.EAST);
 		//this.panBas.add(boutonAcceuil,BorderLayout.WEST);
 		this.initPanBas();
 		this.add(panBas,BorderLayout.SOUTH);
+
+
 		this.showPanConnexion();
 		
 		
@@ -94,7 +103,7 @@ public class FramePrincipal extends JFrame {
 	}
 	
 	public void showPanSecure() {
-		this.cartes.show(panContents, "ACCEUIL");
+		this.cartes.show(panContents, "SECURE");
 		this.repaint();
 	}
 	
@@ -201,7 +210,7 @@ public class FramePrincipal extends JFrame {
 		
 		//MY HOME
 		Jmyhome.setIcon(myhome11);
-		Jmyhome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jmyhome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jmyhome.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -235,7 +244,7 @@ public class FramePrincipal extends JFrame {
 		
 		//SECURE
 		Jsecure.setIcon(secure11);
-		Jsecure.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jsecure.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jsecure.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -269,7 +278,7 @@ public class FramePrincipal extends JFrame {
 		
 		//ACCEUIL
 		Jacceuil.setIcon(acceuil22);
-		Jacceuil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jacceuil.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jacceuil.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -303,7 +312,7 @@ public class FramePrincipal extends JFrame {
 		
 		//CAMERA
 		Jcamera.setIcon(camera11);
-		Jcamera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jcamera.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jcamera.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -337,7 +346,7 @@ public class FramePrincipal extends JFrame {
 		
 		//HISTORY
 		Jhistory.setIcon(history11);
-		Jhistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//à ajouter et mettre pour chaque label
+		Jhistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//ï¿½ ajouter et mettre pour chaque label
 		Jhistory.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
