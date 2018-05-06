@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 
 public class PanMyHome extends JPanel  {
 	private static final long serialVersionUID = 4721795520307721056L;
+	
+	FramePrincipal framePrincipal;
+	
 	private JLabel maison = new JLabel();
 	JLabel fenetre1 = new JLabel();
 	JLabel fenetre2 = new JLabel();
@@ -26,8 +29,11 @@ public class PanMyHome extends JPanel  {
 	ImageIcon porteverticn;
 	ImageIcon porterougeicn;
 	
+	public PanMyHome(FramePrincipal framePrincipal) {
+		this.framePrincipal=framePrincipal;
+	}
+
 	public void initialisation() {
-		// TODO Auto-generated method stub
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
 		
@@ -109,6 +115,10 @@ public class PanMyHome extends JPanel  {
 			public void mousePressed(MouseEvent e) {
 				if (   (((ImageIcon) fenetre1.getIcon()).getDescription()).equals("rouge")) {
 					fenetre1.setIcon(fentreverticn);
+		     		framePrincipal.panSecure.Jcadenas.setIcon(framePrincipal.panSecure.cadenas_ouvert2);
+		     		framePrincipal.panSecure.JTexteEtat.setText("Your home is not armed");
+		     		framePrincipal.panSecure.JTexteEtat2.setText("                ");
+		     		framePrincipal.panSecure.setOuvert(true);
 				} else {
 					fenetre1.setIcon(fentrerougeicn);
 				}
@@ -137,6 +147,10 @@ public class PanMyHome extends JPanel  {
 			public void mousePressed(MouseEvent e) {
 				if (   (((ImageIcon) fenetre2.getIcon()).getDescription()).equals("rouge")) {
 					fenetre2.setIcon(fentreverticn);
+		     		framePrincipal.panSecure.Jcadenas.setIcon(framePrincipal.panSecure.cadenas_ouvert2);
+		     		framePrincipal.panSecure.JTexteEtat.setText("Your home is not armed");
+		     		framePrincipal.panSecure.JTexteEtat2.setText("                ");
+		     		framePrincipal.panSecure.setOuvert(true);
 				} else {
 					fenetre2.setIcon(fentrerougeicn);
 				}
@@ -168,6 +182,10 @@ public class PanMyHome extends JPanel  {
 			public void mousePressed(MouseEvent e) {
 				if (   (((ImageIcon) fenetre3.getIcon()).getDescription()).equals("rouge")) {
 					fenetre3.setIcon(fentreverticn);
+		     		framePrincipal.panSecure.Jcadenas.setIcon(framePrincipal.panSecure.cadenas_ouvert2);
+		     		framePrincipal.panSecure.JTexteEtat.setText("Your home is not armed");
+		     		framePrincipal.panSecure.JTexteEtat2.setText("                ");
+		     		framePrincipal.panSecure.setOuvert(true);
 				} else {
 					fenetre3.setIcon(fentrerougeicn);
 				}
@@ -199,6 +217,10 @@ public class PanMyHome extends JPanel  {
 			public void mousePressed(MouseEvent e) {
 				if (   (((ImageIcon) fenetre4.getIcon()).getDescription()).equals("rouge")) {
 					fenetre4.setIcon(fentreverticn);
+		     		framePrincipal.panSecure.Jcadenas.setIcon(framePrincipal.panSecure.cadenas_ouvert2);
+		     		framePrincipal.panSecure.JTexteEtat.setText("Your home is not armed");
+		     		framePrincipal.panSecure.JTexteEtat2.setText("                ");
+		     		framePrincipal.panSecure.setOuvert(true);
 				} else {
 					fenetre4.setIcon(fentrerougeicn);
 				}
@@ -229,6 +251,10 @@ public class PanMyHome extends JPanel  {
 			public void mousePressed(MouseEvent e) {
 				if (   (((ImageIcon) porte.getIcon()).getDescription()).equals("rouge")) {
 					porte.setIcon(porteverticn);
+		     		framePrincipal.panSecure.Jcadenas.setIcon(framePrincipal.panSecure.cadenas_ouvert2);
+		     		framePrincipal.panSecure.JTexteEtat.setText("Your home is not armed");
+		     		framePrincipal.panSecure.JTexteEtat2.setText("                ");
+		     		framePrincipal.panSecure.setOuvert(true);
 				} else {
 					porte.setIcon(porterougeicn);
 				}

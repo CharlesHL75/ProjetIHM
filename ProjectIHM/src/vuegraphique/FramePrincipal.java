@@ -31,7 +31,7 @@ public class FramePrincipal extends JFrame {
 	PanConnexion panConnexion = new PanConnexion(this, controlSIdentifier);
 	PanCamera panCamera = new PanCamera();
 	PanHistory panHistory = new PanHistory();
-	PanMyHome panMyHome = new PanMyHome();
+	PanMyHome panMyHome= new PanMyHome(this);;
 	PanSecure panSecure = new PanSecure(panMyHome);
 	
 	private CardLayout cartes = new CardLayout();
@@ -59,6 +59,8 @@ public class FramePrincipal extends JFrame {
 	JLabel JTexteVide2  = new JLabel();
 	
 	public FramePrincipal() {
+
+		
 		this.setTitle("IHM");  //D�finit un titre
 		this.setSize(907, 623); 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre

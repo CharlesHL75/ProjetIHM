@@ -34,7 +34,7 @@ public class PanSecure extends JPanel  {
 	Box boxTextEtat  = Box.createHorizontalBox();
 	Box boxTextEtat2  = Box.createHorizontalBox();
 	Box boxTextAlarme  = Box.createHorizontalBox();
-	
+	ImageIcon cadenas_ouvert2;
 	private boolean enabled;
 	private boolean ouvert;
 	
@@ -52,7 +52,7 @@ public class PanSecure extends JPanel  {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}		
-				ImageIcon cadenas_ouvert2=new ImageIcon(cadenas_ouvert);
+				cadenas_ouvert2=new ImageIcon(cadenas_ouvert);
 				
 				
 				//CADENAS FERMEE
@@ -92,7 +92,7 @@ public class PanSecure extends JPanel  {
 				JTexteEtat2.setText("                ");
 				JTexteEtat2.setFont(new Font("Roboto", Font.PLAIN, 32));
 				
-				ouvert=true;
+				setOuvert(true);
 				
 				Jcadenas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//� ajouter et mettre pour chaque label
 				Jcadenas.addMouseListener(new MouseListener() {
@@ -101,7 +101,7 @@ public class PanSecure extends JPanel  {
 					}
 					@Override
 					public void mousePressed(MouseEvent e) {
-						if(ouvert==true) {
+						if(isOuvert()==true) {
 						Jcadenas.setIcon(cadenas_ferme2);
 						JTexteEtat.setText("EVERYTHING LOOKS GOOD");
 						JTexteEtat2.setText("Your home is armed");
@@ -110,7 +110,7 @@ public class PanSecure extends JPanel  {
 						panMyHome.fenetre3.setIcon(panMyHome.fentrerougeicn);
 						panMyHome.fenetre4.setIcon(panMyHome.fentrerougeicn);
 						panMyHome.porte.setIcon(panMyHome.porterougeicn);
-						ouvert=false;
+						setOuvert(false);
 						}
 						else {
 			     		Jcadenas.setIcon(cadenas_ouvert2);
@@ -121,7 +121,7 @@ public class PanSecure extends JPanel  {
 						panMyHome.fenetre3.setIcon(panMyHome.fentreverticn);
 						panMyHome.fenetre4.setIcon(panMyHome.fentreverticn);
 						panMyHome.porte.setIcon(panMyHome.porteverticn);
-						ouvert=true;
+						setOuvert(true);
 						}
 					}
 		            @Override
@@ -143,7 +143,7 @@ public class PanSecure extends JPanel  {
 			    Jalarme.setIcon(alarmDisabled1);
 				JTexteVide.setText("         ");
 				JTexteAlarme.setText("Alarme Disabled");
-				JTexteAlarme.setFont(new Font("Roboto", Font.PLAIN, 27));
+				JTexteAlarme.setFont(new Font("Tahoma", Font.BOLD, 27));
 				
 				Jalarme.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));//� ajouter et mettre pour chaque label
 				Jalarme.addMouseListener(new MouseListener() {
@@ -194,6 +194,14 @@ public class PanSecure extends JPanel  {
 				this.add(boxdroite);
 				
 				
+	}
+
+	public boolean isOuvert() {
+		return ouvert;
+	}
+
+	public void setOuvert(boolean ouvert) {
+		this.ouvert = ouvert;
 	}
 	
 	
