@@ -29,7 +29,7 @@ public class PanSecure extends JPanel  {
 	Box boxTextAlarme  = Box.createHorizontalBox();
 
 	public void initialisation() {
-	        	this.setBackground(Color.GREEN);
+	        	this.setBackground(Color.WHITE);
 		
 		        //CADENAS OUVERT
 				BufferedImage cadenas_ouvert=null;
