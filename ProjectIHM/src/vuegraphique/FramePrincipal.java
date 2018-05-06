@@ -60,7 +60,7 @@ public class FramePrincipal extends JFrame {
 	
 	public FramePrincipal() {
 		this.setTitle("IHM");  //D�finit un titre
-		this.setSize(917, 623); 
+		this.setSize(907, 623); 
 		this.setLocationRelativeTo(null); //Positionne au centre la fenetre
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Termine le processus lorsqu'on clique sur la croix rouge
         this.setResizable(false);
@@ -171,12 +171,8 @@ public class FramePrincipal extends JFrame {
 		Jdateheure.setIcon(dateheure1);
 		Json.setIcon(son1);
 		
-		JTexteVide1.setText("                              ");
-		JTexteVide2.setText("                              ");
-
-		
-		
-		
+		JTexteVide1.setText("                                             ");
+		JTexteVide2.setText("                                                  ");
 		boxPanTop.add(Jsettings);
 		boxPanTop.add(JTexteVide1);
 		boxPanTop.add(Jdateheure);
