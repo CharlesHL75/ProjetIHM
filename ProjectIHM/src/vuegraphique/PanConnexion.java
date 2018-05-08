@@ -10,8 +10,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -50,8 +55,20 @@ public class PanConnexion extends JPanel{
 	
 	
 	public void initConnexion() {
-		this.setBackground(new Color(128,102,83));
-		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
+		this.setBackground(new Color(40,40,40));
+		this.setLayout(null);
+		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,30)));
+		BufferedImage logo1=null;
+		try {
+			logo1 = ImageIO.read(new File("RESSOURCE/logo-intro.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon logo=new ImageIcon(logo1);
+		JLabel Jlogo = new JLabel();
+		Jlogo.setIcon(logo);
+	
+		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,70)));
 		
 		boxMiseEnPageConnexion.add(getError()); //ajout du label d'erreur 
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,10)));
@@ -63,7 +80,7 @@ public class PanConnexion extends JPanel{
 		boxMiseEnPageConnexion.add(Box.createRigidArea(new Dimension(0,5)));
 		
 		textAreaLogin.setMaximumSize(new Dimension(150,30)); //zone d'ecriture du login
-		textAreaLogin.setFont(new Font("Poppins-Black", Font.PLAIN,20));
+		textAreaLogin.setFont(new Font("Roboto", Font.PLAIN,20));
 		textAreaLogin.addKeyListener(new KeyListener(){
 		    @Override
 		    public void keyPressed(KeyEvent e){
@@ -123,6 +140,9 @@ public class PanConnexion extends JPanel{
 		});
 		boxBouton.add(buttonLogin);
 		boxMiseEnPageConnexion.add(boxBouton);
+		Jlogo.setBounds(381,50,150,229);
+		boxMiseEnPageConnexion.setBounds(-45,250,1000,1000);
+		this.add(Jlogo);
 		this.add(boxMiseEnPageConnexion);
 		boxMiseEnPageConnexion.setVisible(true);
 	}
