@@ -2,6 +2,10 @@ package vuegraphique;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -9,7 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,7 +24,7 @@ public class PanMyHome extends JPanel  {
 	
 	FramePrincipal framePrincipal;
 	
-	private JLabel maison = new JLabel();
+	JLabel maison = new JLabel();
 	JLabel fenetre1 = new JLabel();
 	JLabel fenetre2 = new JLabel();
 	JLabel fenetre3 = new JLabel();
@@ -28,7 +34,13 @@ public class PanMyHome extends JPanel  {
 	ImageIcon fentreverticn;
 	ImageIcon porteverticn;
 	ImageIcon porterougeicn;
-	
+	ImageIcon planicn;
+	ImageIcon maisonicn;
+	private Box boxSide = Box.createVerticalBox();
+	JButton vueEnsemble = new JButton();
+	JButton etage1 = new JButton();
+	JButton etage2 = new JButton();
+	JButton RDC = new JButton();
 	public PanMyHome(FramePrincipal framePrincipal) {
 		this.framePrincipal=framePrincipal;
 	}
@@ -37,13 +49,22 @@ public class PanMyHome extends JPanel  {
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
 		
+		BufferedImage planimg=null;
+		try {
+			planimg = ImageIO.read(new File("RESSOURCE/planEtage2.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
+		ImageIcon planicn=new ImageIcon(planimg);
+		
+		
 		BufferedImage maisonimg=null;
 		try {
 			maisonimg = ImageIO.read(new File("RESSOURCE/maison.png"));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}		
-		ImageIcon maisonicn=new ImageIcon(maisonimg);
+		maisonicn=new ImageIcon(maisonimg);
 		
 		BufferedImage fentrerougeimg=null;
 		try {
@@ -81,20 +102,103 @@ public class PanMyHome extends JPanel  {
 		porteverticn=new ImageIcon(portevertimg);
 		porteverticn.setDescription(new String("vert"));
 		
+		etage1.setText("Étage 1");
+		etage1.setBackground(Color.WHITE);
+		etage1.setForeground(Color.BLACK); 
+		etage1.setFocusPainted(false);
+		etage1.setFont(new Font("Robotic", Font.BOLD, 23));
+		etage1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		etage1.setPreferredSize(new Dimension(130,40));
+		etage1.setMaximumSize(new Dimension(130,40));
+		etage1.setMinimumSize(new Dimension(130,40));
+
+	
+		RDC.setText("RDC");
+		RDC.setBackground(Color.WHITE);
+		RDC.setForeground(Color.BLACK); 
+		RDC.setFocusPainted(false);
+		RDC.setFont(new Font("Robotic", Font.BOLD, 23));
+		RDC.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		RDC.setPreferredSize(new Dimension(130,40));
+		RDC.setMaximumSize(new Dimension(130,40));
+		RDC.setMinimumSize(new Dimension(130,40));
 		
+		etage2.setText("Étage 2");
+		etage2.setBackground(Color.WHITE);
+		etage2.setForeground(Color.BLACK); 
+		etage2.setFocusPainted(false);
+		etage2.setFont(new Font("Robotic", Font.BOLD, 23));
+		etage2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		etage2.setPreferredSize(new Dimension(130,40));
+		etage2.setMaximumSize(new Dimension(130,40));
+		etage2.setMinimumSize(new Dimension(130,40));
+		etage2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fenetre1.setVisible(false);
+				fenetre2.setVisible(false);
+				fenetre3.setVisible(false);
+				fenetre4.setVisible(false);
+				porte.setVisible(false);
+				maison.setIcon(planicn);
+				vueEnsemble.setBackground(Color.WHITE);
+				etage2.setBackground(new Color(34,119,239));
+				
+
+				
+			}
+		});
+		
+		
+		vueEnsemble.setText("Maison");
+		vueEnsemble.setBackground(new Color(34,119,239));
+		vueEnsemble.setForeground(Color.BLACK); 
+		vueEnsemble.setFocusPainted(false);
+		vueEnsemble.setFont(new Font("Robotic", Font.BOLD, 23));
+		vueEnsemble.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		vueEnsemble.setPreferredSize(new Dimension(130,40));
+		vueEnsemble.setMaximumSize(new Dimension(130,40));
+		vueEnsemble.setMinimumSize(new Dimension(130,40));
+		vueEnsemble.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				maison.setVisible(true);
+				fenetre1.setVisible(true);
+				fenetre2.setVisible(true);
+				fenetre3.setVisible(true);
+				fenetre4.setVisible(true);
+				porte.setVisible(true);
+				maison.setIcon(maisonicn);
+				etage2.setBackground(Color.WHITE);
+				vueEnsemble.setBackground(new Color(34,119,239));
+				
+
+				
+			}
+		});
+		
+		boxSide.add(etage2);
+		boxSide.add(Box.createRigidArea(new Dimension(0,40)));
+		boxSide.add(etage1);
+		boxSide.add(Box.createRigidArea(new Dimension(0,40)));
+		boxSide.add(RDC);
+		boxSide.add(Box.createRigidArea(new Dimension(0,40)));
+		boxSide.add(vueEnsemble);
+		boxSide.setBounds(80,80,400,400);
 		fenetre1.setIcon(fentrerougeicn);
 		fenetre2.setIcon(fentreverticn);
 		fenetre3.setIcon(fentrerougeicn);
 		fenetre4.setIcon(fentrerougeicn);
 		porte.setIcon(porteverticn);
 		maison.setIcon(maisonicn);
-		maison.setBounds(300,30,539,391);
+		maison.setBounds(300,-25,700,500);
 		fenetre1.setBounds(400,155,101,49);
 		fenetre2.setBounds(640,155,101,49);
 		fenetre3.setBounds(640,250,101,49);
 		fenetre4.setBounds(400,250,101,49);
 		porte.setBounds(525,346,98,72);
 		initListenerPorteFenetre();
+		this.add(boxSide);
 		this.add(fenetre1);
 		this.add(fenetre2);
 		this.add(fenetre3);

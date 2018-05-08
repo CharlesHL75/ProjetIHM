@@ -90,8 +90,8 @@ public class FramePrincipal extends JFrame {
 		this.showPanConnexion();
 		
 		
-		this.panBas.setVisible(false); 
-		this.panTop.setVisible(false);
+		this.panBas.setVisible(true); 
+		this.panTop.setVisible(true);
 		this.getContentPane().add(panContents);
 		this.showPanConnexion();
 		this.setVisible(true);
@@ -112,6 +112,15 @@ public class FramePrincipal extends JFrame {
 	
 	public void showPanMyHome() {
 		this.cartes.show(panContents, "MYHOME");
+		panMyHome.maison.setVisible(true);
+		panMyHome.fenetre1.setVisible(true);
+		panMyHome.fenetre2.setVisible(true);
+		panMyHome.fenetre3.setVisible(true);
+		panMyHome.fenetre4.setVisible(true);
+		panMyHome.porte.setVisible(true);
+		panMyHome.maison.setIcon(panMyHome.maisonicn);
+		panMyHome.etage2.setBackground(Color.WHITE);
+		panMyHome.vueEnsemble.setBackground(new Color(34,119,239));
 		this.repaint();
 	}
 	
