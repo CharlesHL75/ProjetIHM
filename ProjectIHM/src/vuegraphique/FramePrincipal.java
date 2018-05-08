@@ -131,6 +131,15 @@ public class FramePrincipal extends JFrame {
 	
 	public void showPanCamera() {
 		this.cartes.show(panContents, "CAMERA");
+		panCamera.boxligne1.setVisible(true);
+		panCamera.boxligne2.setVisible(true);
+
+		panCamera.boxcamerabig1.setVisible(false);
+		panCamera.boxcamerabig2.setVisible(false);
+		panCamera.boxcamerabig3.setVisible(false);
+		panCamera.boxcamerabig4.setVisible(false);
+		panCamera.boxcamerabig5.setVisible(false);
+		panCamera.boxcamerabig6.setVisible(false);
 		this.repaint();
 	}
 
